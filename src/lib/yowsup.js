@@ -39,13 +39,13 @@ class yowsup  {
         cmd = spawn('python', args, options);
         cmd.stdin.setEncoding('utf-8');
         
-        cmd.stdout.on('data', function(input) {
+        cmd.stdout.on('data', input => {
             input = input.toString().trim();
             
             emitter.emit('process', input);
         });
 
-        emitter.on('online', function(online) {
+        emitter.on('online', online => {
             emitter.emit('control', online);
             return callback(online);
         });
