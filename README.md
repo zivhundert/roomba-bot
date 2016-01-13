@@ -1,3 +1,3 @@
 # roomba-bot
-Whatsapp room bot
+ room bot
 c
