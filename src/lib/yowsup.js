@@ -12,12 +12,14 @@ let cmd,
         CHAT_RECEIVE: Symbol(),
         PAYLOAD_RECEIVE: Symbol()
     },
+
     RESPONSE = {
         CONNECTED: '[connected]:',
         OFFLINE: '[offline]:',
         AUTH_OK: 'Auth: Logged in!',
         AUTH_ERROR: 'Auth Error, reason not-authorized'
     },
+
     STATE = {
         ONLINE: Symbol(),
         OFFLINE: Symbol(),
