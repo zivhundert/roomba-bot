@@ -28,7 +28,7 @@ class Yowsup  {
      *
      */
     constructor(countryCode, phoneNumber, password) {
-        this.prefix = '/';
+        this.cmdPrefix = '/';
         this.countryCode = countryCode;
         this.phoneNumber = phoneNumber;
         this.password = password;
@@ -67,14 +67,14 @@ class Yowsup  {
     }
 
 
-    getPrefix() {
-        return this.prefix;
+    getCMDPrefix() {
+        return this.cmdPrefix;
     }
 
 
     send(arg) {
         cmd.stdin.write([
-            this.getPrefix(),
+            this.getCMDPrefix(),
             arg,
             '\n'
         ].join(''));
@@ -227,7 +227,6 @@ class Yowsup  {
                 console.log(this);
                 break;
         }
-
     }
 
 
