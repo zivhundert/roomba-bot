@@ -211,13 +211,33 @@ class Yowsup  {
         }
     }
 
+
+    onStateChange(state) {
+        switch(state) {
+            case STATE.ONLINE:
+                console.log('* ONLINE');
+                break;
+
+            case STATE.OFFLINE:
+                console.log('* OFFLINE');
+                break;
+
+            case STATE.AUTH_ERROR:
+                console.log('* AUTH ERROR');
+                console.log(this);
+                break;
+        }
+
+    }
+
+
     subscribe() {
         emitter.on(EVENT.ON_YOWSUP_RECEIVE, payload => {
             this.onReceive(payload);
         });
 
         emitter.on(EVENT.STATE_CHANGE, state => {
-            console.log(state);
+            this.onStateChange(state);
         });
     }
 
