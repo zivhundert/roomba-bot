@@ -10,7 +10,7 @@ let cmd,
         ON_YOWSUP_RECEIVE: Symbol(),
         STATE_CHANGE: Symbol(),
         CHAT_MESSAGE: Symbol(),
-        PAYLOAD: Symbol()
+        PAYLOAD_RECEIVE: Symbol()
     },
     RESPONSE = {
         OFFLINE: '[offline]:',
@@ -207,7 +207,7 @@ class Yowsup  {
         if (chatMsg) {
             emitter.emit(EVENT.CHAT_MESSAGE, chatMsg);
         } else {
-            emitter.emit(EVENT.PAYLOAD, payload);
+            emitter.emit(EVENT.PAYLOAD_MESSAGE, payload);
         }
     }
 
@@ -234,6 +234,15 @@ class Yowsup  {
     subscribe() {
         emitter.on(EVENT.ON_YOWSUP_RECEIVE, payload => {
             this.onReceive(payload);
+        });
+
+
+        emitter.on(EVENT.CHAT_MESSAGE, message => {
+            console.log(['message', message]);
+        });
+
+        emitter.on(EVENT.PAYLOAD_RECEIVE, payload => {
+            console.log(['payload', payload]);
         });
 
         emitter.on(EVENT.STATE_CHANGE, state => {
