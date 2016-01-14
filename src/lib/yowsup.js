@@ -9,10 +9,11 @@ let cmd,
     EVENT = {
         ON_YOWSUP_RECEIVE: Symbol(),
         STATE_CHANGE: Symbol(),
-        CHAT_MESSAGE: Symbol(),
+        CHAT_RECEIVE: Symbol(),
         PAYLOAD_RECEIVE: Symbol()
     },
     RESPONSE = {
+        CONNECTED: '[connected]:',
         OFFLINE: '[offline]:',
         AUTH_OK: 'Auth: Logged in!',
         AUTH_ERROR: 'Auth Error, reason not-authorized'
@@ -189,6 +190,9 @@ class Yowsup  {
 
     onReceive(payload) {
         switch(payload) {
+            case RESPONSE.CONNECTED:
+                break;
+
             case RESPONSE.OFFLINE:
                 this.send('L'); // sends login command
                 break;
@@ -205,9 +209,9 @@ class Yowsup  {
                 let chatMsg = this.payloadNormalizer(payload);
 
                 if (null !== chatMsg) {
-                    emitter.emit(EVENT.CHAT_MESSAGE, chatMsg);
+                    emitter.emit(EVENT.CHAT_RECEIVE, chatMsg);
                 } else {
-                    emitter.emit(EVENT.PAYLOAD_MESSAGE, payload);
+                    emitter.emit(EVENT.PAYLOAD_RECEIVE, payload);
                 }
         }
 
@@ -239,7 +243,7 @@ class Yowsup  {
         });
 
 
-        emitter.on(EVENT.CHAT_MESSAGE, message => {
+        emitter.on(EVENT.CHAT_RECEIVE, message => {
             console.log(['message', message]);
         });
 
