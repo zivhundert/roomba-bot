@@ -1,16 +1,10 @@
 var config = {
-    env: process.env.NODE_ENV || 'development',
-    
-    environments: {
-        development: {
-            delay: 1000,
-            yowsup: {
-                id: "phoneid",
-                password: "key"
-            }
-        }
+    delay: 1000,
+    yowsup: {
+        countryCode: process.env.COUNTRY || null,
+        phoneNumber: process.env.PHONE || null,
+        password: process.env.PASS || null
     }
 };
 
-process.env.NODE_ENV = config.env;
-module.exports = config.environments[process.env.NODE_ENV];
+module.exports = config;
