@@ -1,67 +1,32 @@
 'use strict';
 
 let config = require('./config'),
-    Yowsup = require('./lib/yowsup'),
-    EventEmitter = require('events').EventEmitter;
+    Router = require('./router'),
+    YowsupAPI = require('./lib/yowsup'),
+    EventEmitter = require('events').EventEmitter,
+    yowsup = new YowsupAPI();
 
-
-class RepeatText {
+class Roomba {
     constructor() {
-
-    }
-}
-
-class Trigger() {
-    constructor(pattern, handlerClass) {
-        this.parent = pattern;
-        this.handlerClass = handlerClass;
+        console.log('Roomba is Running');
     }
 
 
-    getPattern() {
-        return this.pattern;
-    }
-}
+    bootstrap() {
+        let route = new Router(yowsup);
 
-class Router {
-    costructor() {
-        this.triggers = [];
-
-        this.bindTriggers();
-    }
-
-
-    bindTriggers() {
-        this.triggers.push(
-            new Trigger(/(.*)/, RepeatText) // repeat all words
-        );
+        yowsup.initialize(
+            config.yowsup.countryCode,
+            config.yowsup.phoneNumber,
+            config.yowsup.password
+        )
+        .on('CHAT_RECEIVE', (message) => {
+            route.dispatch(message);
+        })
+        .connect();
 
         return this;
     }
-
-
-    match(pattern, text) {
-        return text.match(pattern);
-    }
-
-
-    dispatch(message) {
-        this.triggers.forEach(trigger => {
-
-        });
-        console.log(message);
-    }
 }
 
-let api = new Yowsup(
-        config.yowsup.countryCode,
-        config.yowsup.phoneNumber,
-        config.yowsup.password
-    )
-    .on('CHAT_RECEIVE', (message) => {
-        console.log(message);
-    })
-    .connect();
-
-
-console.log('EOF');
+module.exports = new Roomba().bootstrap();

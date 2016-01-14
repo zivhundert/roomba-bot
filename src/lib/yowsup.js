@@ -30,14 +30,22 @@ class Yowsup  {
     /**
      *
      */
-    constructor(countryCode, phoneNumber, password) {
+    constructor() {
         this.cmdPrefix = '/';
-        this.countryCode = countryCode;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
+        this.countryCode = null;
+        this.phoneNumber = null;
+        this.password = null;
 
         this.subscribe();
     }
+
+
+    initialize(countryCode, phoneNumber, password) {
+        this.countryCode = countryCode;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
+
 
 
     on(eventName, callback) {
@@ -94,12 +102,33 @@ class Yowsup  {
     }
 
 
-    send(arg) {
-        cmd.stdin.write([
-            this.getCMDPrefix(),
-            arg,
-            '\n'
-        ].join(''));
+    doSay(to, text) {
+        this.send([
+            'message',
+            'send',
+            to,
+            text
+        ]);
+    }
+
+
+    doLogin() {
+        return this.send('L');
+    }
+
+
+    send(args) {
+        if (args instanceof Array) {
+            args = args.join(' ');
+        }
+
+        let command = [
+                this.getCMDPrefix(),
+                args,
+                '\n'
+            ].join('');
+
+        cmd.stdin.write(command);
     }
 
 
@@ -217,7 +246,7 @@ class Yowsup  {
                 break;
 
             case RESPONSE.OFFLINE:
-                this.send('L'); // sends login command
+                this.doLogin(); // sends login command
                 break;
 
             case RESPONSE.AUTH_ERROR:
