@@ -37,7 +37,26 @@ class Yowsup  {
         this.password = password;
 
         this.subscribe();
-        this.runYowsup();
+    }
+
+
+    on(eventName, callback) {
+        let event = EVENT[eventName];
+
+        if ('undefined' === event) {
+            console.log(['Error', 'Event not found', eventName]);
+
+            return false;
+        }
+
+        emitter.on(event, callback);
+
+        return this;
+    }
+
+
+    connect() {
+        return this.runYowsup();
     }
 
 
@@ -182,6 +201,8 @@ class Yowsup  {
         cmd.on('close', () => {
             this.onClose();
         });
+
+        return this;
     }
 
 
@@ -246,11 +267,11 @@ class Yowsup  {
 
 
         emitter.on(EVENT.CHAT_RECEIVE, message => {
-            console.log(['message', message]);
+            //console.log(['message', message]);
         });
 
         emitter.on(EVENT.PAYLOAD_RECEIVE, payload => {
-            console.log(['payload', payload]);
+            //console.log(['payload', payload]);
         });
 
         emitter.on(EVENT.STATE_CHANGE, state => {
