@@ -5,9 +5,9 @@ let config = require('./config'),
     EventEmitter = require('events').EventEmitter;
 
 
-config.yowsup.countryCode=972;
-config.yowsup.phoneNumber=542094491;
-config.yowsup.password='CBr28znggUHqbaSpLk/XvJV9dAE=';
+config.yowsup.countryCode=0;
+config.yowsup.phoneNumber=0;
+config.yowsup.password='0';
 
 let api = new Yowsup(
     config.yowsup.countryCode,
