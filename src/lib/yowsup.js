@@ -116,7 +116,7 @@ class Yowsup  {
                 text: null
             };
 
-        if (null === payload) return;
+        if (null === payload) return payload;
 
         message.text = payload.pop();
         message.id = payload.pop();
@@ -188,27 +188,30 @@ class Yowsup  {
 
 
     onReceive(payload) {
-        // if it's disconnected
-        if (RESPONSE.OFFLINE === payload) {
-            this.send('L'); // sends login command
+        switch(payload) {
+            case RESPONSE.OFFLINE:
+                this.send('L'); // sends login command
+                break;
+
+            case RESPONSE.AUTH_ERROR:
+                emitter.emit(EVENT.STATE_CHANGE, STATE.AUTH_ERROR);
+                break;
+
+            case RESPONSE.AUTH_OK:
+                emitter.emit(EVENT.STATE_CHANGE, STATE.ONLINE);
+                break;
+
+            default:
+                let chatMsg = this.payloadNormalizer(payload);
+
+                if (null !== chatMsg) {
+                    emitter.emit(EVENT.CHAT_MESSAGE, chatMsg);
+                } else {
+                    emitter.emit(EVENT.PAYLOAD_MESSAGE, payload);
+                }
         }
 
-        // after login 1 time!
-        if (RESPONSE.AUTH_OK === payload) {
-            emitter.emit(EVENT.STATE_CHANGE, STATE.ONLINE);
-        }
 
-        // Login failed
-        if (RESPONSE.AUTH_ERROR === payload) {
-            emitter.emit(EVENT.STATE_CHANGE, STATE.AUTH_ERROR);
-        }
-
-        let chatMsg = this.payloadNormalizer(payload);
-        if (chatMsg) {
-            emitter.emit(EVENT.CHAT_MESSAGE, chatMsg);
-        } else {
-            emitter.emit(EVENT.PAYLOAD_MESSAGE, payload);
-        }
     }
 
 
