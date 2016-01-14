@@ -222,15 +222,15 @@ class Yowsup  {
     onStateChange(state) {
         switch(state) {
             case STATE.ONLINE:
-                console.log('* ONLINE');
+                console.log('[*] ONLINE');
                 break;
 
             case STATE.OFFLINE:
-                console.log('* OFFLINE');
+                console.log('[*] OFFLINE');
                 break;
 
             case STATE.AUTH_ERROR:
-                console.log('* AUTH ERROR');
+                console.log('[*] AUTH ERROR');
                 console.log(this);
                 break;
         }
