@@ -12,7 +12,8 @@
     "lodash": "^4.0.0",
     "tape": "^0.0.3",
     "xtend": "^4.0.1",
-    "pageres": "^3.0.2"
+    "pageres": "^3.0.2",
+    "google-images": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {

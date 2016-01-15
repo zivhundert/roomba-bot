@@ -6,6 +6,11 @@ var config = {
         phoneNumber: process.env.PHONE || null,
         password: process.env.PASS || null
     },
+    google: {
+        CSE: process.env.CSE || null,
+        apiKey: process.env.API_KEY || null
+    },
+
     tmp: {
         dir: __dirname + '/../_TMP'
     }
