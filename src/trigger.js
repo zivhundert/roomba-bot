@@ -25,9 +25,6 @@ class Trigger {
     matchPattern(text) {
         let match = text.match(this.pattern);
 
-        if (null !== match)
-            match.shift();
-
         return match;
     }
 

@@ -17,7 +17,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "karma",
-    "install_yowsup": "sudo easy_install yowsup2"
+    "install_yowsup": "sudo easy_install yowsup2",
+    "page_res_utf8_fix": "LC_ALL=C"
   },
   "keywords": [
     "bot",

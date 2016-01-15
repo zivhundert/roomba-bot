@@ -4,7 +4,7 @@ class RepeatText {
     constructor(message) {
         this.action = 'SAY';
         this.type = 'all';
-        this.message = message;
+        this.message = message[1];
     }
 
     execute(callback) {

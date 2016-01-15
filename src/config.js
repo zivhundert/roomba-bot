@@ -5,6 +5,9 @@ var config = {
         countryCode: process.env.COUNTRY || null,
         phoneNumber: process.env.PHONE || null,
         password: process.env.PASS || null
+    },
+    tmp: {
+        dir: __dirname + '/../_TMP'
     }
 };
 

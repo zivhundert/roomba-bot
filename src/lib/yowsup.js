@@ -114,6 +114,17 @@ class Yowsup  {
     }
 
 
+    doImage(to, path, caption) {
+        this.send([
+            'image',
+            'send',
+            to,
+            path,
+            caption
+        ]);
+    }
+
+
     doLogin() {
         return this.send('L');
     }

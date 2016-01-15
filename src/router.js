@@ -1,6 +1,7 @@
 'use strict';
 
 let Trigger = require('./trigger'),
+    URLtoImage = require('./triggers/url_to_image'),
     PingPong = require('./triggers/ping_pong');
 
 class Router {
@@ -14,7 +15,8 @@ class Router {
 
     bindTriggers() {
         this.triggers.push(
-            new Trigger(/\/ping/, PingPong) // repeat all words
+            new Trigger(/\/ping/, PingPong), // repeat all words
+            new Trigger(/http:\/\/(.*)/, URLtoImage) // image downloader
         );
 
         return this;
@@ -42,6 +44,14 @@ class Router {
             case 'SAY':
                 triggeredActionInstance.execute(text => {
                     this.yowsup.doSay(to, text);
+                });
+
+                break;
+
+
+            case 'IMAGE':
+                triggeredActionInstance.execute((path, url) => {
+                    this.yowsup.doImage(to, path, url);
                 });
 
                 break;
