@@ -2,6 +2,7 @@
 
 let Trigger = require('./trigger'),
     URLtoImage = require('./triggers/url_to_image'),
+    GoogleImages = require('./triggers/google_images'),
     PingPong = require('./triggers/ping_pong');
 
 class Router {
@@ -15,7 +16,8 @@ class Router {
 
     bindTriggers() {
         this.triggers.push(
-            new Trigger(/\/ping/, PingPong), // repeat all words
+            new Trigger(/\/ping/, PingPong), // ping pong, check bot up.
+            new Trigger(/\/i (.*)/, GoogleImages), // search images.
             new Trigger(/https?:\/\/(.*)/, URLtoImage) // image downloader
         );
 

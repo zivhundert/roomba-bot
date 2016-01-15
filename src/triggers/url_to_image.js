@@ -1,6 +1,10 @@
 'use strict';
 
-let config = require('../config');
+let config = require('../config'),
+    ignoreURLs = [
+        'whatsapp'
+    ];
+
 const Pageres = require('pageres');
 
 class URLtoImage {
@@ -12,7 +16,21 @@ class URLtoImage {
 
     execute(callback) {
         let tmp = config.tmp.dir,
-            url = this.url;
+            url = this.url,
+            ignorePattern;
+
+        for (let i = 0, len = ignoreURLs.length; i < len; i++) {
+            console.log(ignoreURLs[i]);
+
+            ignorePattern = new RegExp(ignoreURLs[i], 'i');
+
+            if (url.match(ignorePattern)) {
+                console.log('Ignore url found ' + url);
+                return;
+            }
+        }
+
+        // TODO, handle diffrently images, .jpg, .png wget them directly instead of using web browser.
 
         console.log('Downloading url... ' + url);
 
