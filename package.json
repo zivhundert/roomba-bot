@@ -12,7 +12,7 @@
     "lodash": "^4.0.0",
     "tape": "^0.0.3",
     "xtend": "^4.0.1",
-    "pageres-cli": "^2.0.0"
+    "pageres": "^3.0.2"
   },
   "devDependencies": {},
   "scripts": {
