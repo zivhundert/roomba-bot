@@ -7,8 +7,8 @@ class RepeatText {
         this.message = message;
     }
 
-    get() {
-        return this.message;
+    execute(callback) {
+        return callback(this.message);
     }
 }
 

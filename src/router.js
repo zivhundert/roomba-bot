@@ -40,7 +40,9 @@ class Router {
 
         switch(triggeredActionInstance.action) {
             case 'SAY':
-                this.yowsup.doSay(to, triggeredActionInstance.get());
+                triggeredActionInstance.execute(text => {
+                    this.yowsup.doSay(to, text);
+                });
 
                 break;
         }
