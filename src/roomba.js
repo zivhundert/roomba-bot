@@ -2,20 +2,20 @@
 
 let config = require('./config'),
     Router = require('./router'),
-    YowsupAPI = require('./lib/yowsup'),
-    EventEmitter = require('events').EventEmitter,
-    yowsup = new YowsupAPI();
+    YowsupAPI = require('./lib/yowsup');
+
 
 class Roomba {
     constructor() {
         console.log('Roomba is Running');
+        this.yowsup = new YowsupAPI();
     }
 
 
     bootstrap() {
-        let route = new Router(yowsup);
+        let route = new Router(this.yowsup);
 
-        yowsup.initialize(
+        this.yowsup.initialize(
             config.yowsup.countryCode,
             config.yowsup.phoneNumber,
             config.yowsup.password

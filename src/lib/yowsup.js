@@ -44,6 +44,8 @@ class Yowsup  {
         this.countryCode = countryCode;
         this.phoneNumber = phoneNumber;
         this.password = password;
+
+        return this;
     }
 
 
