@@ -25,7 +25,7 @@ class URLtoImage {
         	    let fileName = stream[0].filename;
         	    console.log('Downloading complete... ' + url + ' Sending back '+ fileName);
 
-        	    callback(tmp +'/'+ fileName, url);
+        	    callback(tmp +'/'+ fileName);
         	});
     }
 }

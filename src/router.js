@@ -16,7 +16,7 @@ class Router {
     bindTriggers() {
         this.triggers.push(
             new Trigger(/\/ping/, PingPong), // repeat all words
-            new Trigger(/http:\/\/(.*)/, URLtoImage) // image downloader
+            new Trigger(/https?:\/\/(.*)/, URLtoImage) // image downloader
         );
 
         return this;
