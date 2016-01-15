@@ -130,6 +130,8 @@ class Yowsup  {
                 '\n'
             ].join('');
 
+        console.log('DEBUG: ' + command);
+
         cmd.stdin.write(command);
     }
 
