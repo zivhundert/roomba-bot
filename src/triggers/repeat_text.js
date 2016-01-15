@@ -2,14 +2,13 @@
 
 class RepeatText {
     constructor(message) {
+        this.action = 'SAY';
+        this.type = 'all';
         this.message = message;
-        this.run();
     }
 
-    run() {
-        if (null === this.message.to) return;
-
-        yowsup.doSay(this.message.to, this.message.text);
+    get() {
+        return this.message;
     }
 }
 

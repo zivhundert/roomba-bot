@@ -12,12 +12,13 @@ class Trigger {
     }
 
 
+    getInstance(matchedText) {
+        return new this['handlerClass'](matchedText);
+    }
+
+
     match(message) {
-        let matchedText = this.matchPattern(message.text);
-
-        if (null === matchedText) return matchedText; // nothing found.
-
-        new this['handlerClass'](message);
+        return this.matchPattern(message.text);
     }
 
 
