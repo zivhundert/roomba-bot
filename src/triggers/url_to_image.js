@@ -20,8 +20,6 @@ class URLtoImage {
             ignorePattern;
 
         for (let i = 0, len = ignoreURLs.length; i < len; i++) {
-            console.log(ignoreURLs[i]);
-
             ignorePattern = new RegExp(ignoreURLs[i], 'i');
 
             if (url.match(ignorePattern)) {

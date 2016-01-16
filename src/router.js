@@ -16,9 +16,9 @@ class Router {
 
     bindTriggers() {
         this.triggers.push(
-            new Trigger(/\/ping/, PingPong), // ping pong, check bot up.
-            new Trigger(/\/i (.*)/, GoogleImages), // search images.
-            new Trigger(/https?:\/\/(.*)/, URLtoImage) // image downloader
+            new Trigger(/\/ping/i, PingPong), // ping pong, check bot up.
+            new Trigger(/\/i (.*)/i, GoogleImages), // search images.
+            new Trigger(/https?:\/\/(.*)/i, URLtoImage) // image downloader
         );
 
         return this;

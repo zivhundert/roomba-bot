@@ -20,6 +20,7 @@ class GoogleImages {
 
         google.search(this.message)
             .then(images => {
+                images = this.shuffle(images);
                 let image = images[0].url;
 
                 if (image)
@@ -63,6 +64,13 @@ class GoogleImages {
 
         dl.on('progress', progress => {
         });
+    }
+
+
+    shuffle(o) {
+        for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+
+        return o;
     }
 }
 

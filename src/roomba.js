@@ -2,13 +2,13 @@
 
 let config = require('./config'),
     Router = require('./router'),
-    YowsupAPI = require('./lib/yowsup');
+    YowJS = require('yowjs');
 
 
 class Roomba {
     constructor() {
         console.log('Roomba is Running');
-        this.yowsup = new YowsupAPI();
+        this.yowsup = new YowJS();
     }
 
 
@@ -22,6 +22,8 @@ class Roomba {
         )
         .on('CHAT_RECEIVE', (message) => {
             route.dispatch(message);
+        }).on('YOWSUP_LINK_DEAD', () => {
+            console.log('YOWSUP_LINK_DEAD');
         })
         .connect();
 
