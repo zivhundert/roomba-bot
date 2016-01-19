@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "yowjs": "^0.0.10",
+    "dotenv": "^1.2.0",
     "wget-improved": "^1.2.1",
     "pageres": "^3.0.2",
     "google-images": "^1.0.0"
