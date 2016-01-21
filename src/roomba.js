@@ -1,6 +1,7 @@
 'use strict';
 
 let config = require('./config'),
+    Logger = require('./utils/logger'),
     Router = require('./router'),
     YowJS = require('yowjs');
 
@@ -8,7 +9,7 @@ let config = require('./config'),
 class Roomba {
     constructor() {
         console.log('Roomba is Running');
-        this.yowsup = new YowJS();
+        this.yowsup = new YowJS(Logger);
     }
 
 
