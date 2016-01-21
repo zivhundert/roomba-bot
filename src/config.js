@@ -1,4 +1,6 @@
-var config = {
+require('dotenv').config({path: '../.env'});
+
+module.exports = {
     delay: 1000,
     yowsup: {
         imei: 353271072005549,
@@ -15,5 +17,3 @@ var config = {
         dir: __dirname + '/../_TMP'
     }
 };
-
-module.exports = config;

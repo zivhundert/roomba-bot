@@ -21,10 +21,10 @@ class Roomba {
             config.yowsup.phoneNumber,
             config.yowsup.password
         )
-        .on('CHAT_RECEIVE', (message) => {
+        .on('ON_MESSAGE', (message) => {
             route.dispatch(message);
-        }).on('YOWSUP_LINK_DEAD', () => {
-            console.log('YOWSUP_LINK_DEAD');
+        }).on('LINK_DEAD', () => {
+            console.log('LINK_DEAD');
         })
         .connect();
 
