@@ -4,48 +4,75 @@ let config = require('../config');
 const googleImagesSearch = require('google-images');
 
 let fs = require('fs'),
+    md5 = require('MD5'),
     wget = require('wget-improved'),
-    url = require('url'),
-    path = require('path');
+    cache = require('../utils/cache');
 
 class GoogleImages {
     constructor(message) {
+        this.cachePrefix = 'IMAGES_';
         this.action = 'IMAGE';
         this.type = 'all';
         this.message = message[1];
     }
 
-    googleSearch(callback) {
-        let google = googleImagesSearch(config.google.CSE, config.google.apiKey);
 
-        google.search(this.message)
-            .then(images => {
-                images = this.shuffle(images);
-                let image = images[0].url;
+    getFirstShuffle(list) {
+        let shuffledList = this.shuffle(list);
+        return shuffledList[0];
+    }
 
-                if (image)
-                    this.getImage(image, callback);
+
+    getKey() {
+        return this.cachePrefix + this.message;
+    }
+
+
+    handleImages(images, callback) {
+        let image = this.getFirstShuffle(images).url;
+
+        if (image)
+            this.getImage(image, callback);
+    }
+
+
+    search(callback) {
+        let google = googleImagesSearch(config.google.CSE, config.google.apiKey),
+            getCachedQuery = cache.get(this.getKey());
+
+        if (undefined !== getCachedQuery) {
+            this.handleImages(getCachedQuery, callback);
+
+            return;
+        }
+
+        google.search(this.message).then(images => {
+            cache.set(this.getKey(), images, () => {
+                this.handleImages(images, callback);
             });
+        });
     }
 
     getImage(image, callback) {
         let tmp = config.tmp.dir,
-            fileName = path.basename(url.parse(image).pathname);
+            fileMD5 = md5(image),
+            suffix = image.match(/\.(png|jpg|jpeg|gif|bmp)/),
+            fileName = fileMD5 + suffix[0];
 
-        console.log('Downloading image... ' + image);
+        console.log('Downloading image... ' + image +'to: '+ fileName);
 
         this.download(image, tmp +'/'+ fileName, () => {
-        	    console.log('Downloaded image... ' + image + ' Sending back '+ fileName);
+            console.log('Downloaded image... ' + image + ' Sending back '+ fileName);
 
-        	    setTimeout(() => {
-        	        callback(tmp +'/'+ fileName);
-        	    }, 500);
+            setTimeout(() => {
+                callback(tmp +'/'+ fileName);
+            }, 500);
           });
     }
 
 
     execute(callback) {
-        return this.googleSearch(callback);
+        return this.search(callback);
     }
 
 
