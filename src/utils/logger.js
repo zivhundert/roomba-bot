@@ -1,7 +1,7 @@
 'use strict';
 
 const Logger = require('winston');
-Logger.level = 'silly';
+Logger.level = 'debug';
 
 Logger.add(Logger.transports.File, {
     filename: 'roomba.log'

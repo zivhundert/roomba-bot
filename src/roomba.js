@@ -6,8 +6,6 @@ let config = require('./config'),
     YowJS = require('yowjs'),
     TYPES = require('yowjs/src/message/types');
 
-console.log(TYPES);
-
 class Roomba {
     constructor() {
         console.log('Roomba is Running');
