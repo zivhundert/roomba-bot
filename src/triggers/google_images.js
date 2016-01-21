@@ -18,7 +18,7 @@ class GoogleImages {
 
 
     getFirstShuffle(list) {
-        let shuffledList = this.shuffle(list);
+        let shuffledList = this.shuffle(list.splice(0, 10));
         return shuffledList[0];
     }
 

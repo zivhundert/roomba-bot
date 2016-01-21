@@ -1,6 +1,7 @@
 'use strict';
 
 let Trigger = require('./trigger'),
+    Help = require('./triggers/help'),
     URLtoImage = require('./triggers/url_to_image'),
     GoogleImages = require('./triggers/google_images'),
     PingPong = require('./triggers/ping_pong');
@@ -16,6 +17,7 @@ class Router {
 
     bindTriggers() {
         this.triggers.push(
+            new Trigger(/@help/i, Help), // Help
             new Trigger(/@ping/i, PingPong), // ping pong, check bot up.
             new Trigger(/@i (.*)/i, GoogleImages), // search images.
             new Trigger(/https?:\/\/(.*)/i, URLtoImage) // image downloader
