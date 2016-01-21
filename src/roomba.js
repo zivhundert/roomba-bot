@@ -3,8 +3,10 @@
 let config = require('./config'),
     Logger = require('./utils/logger'),
     Router = require('./router'),
-    YowJS = require('yowjs');
+    YowJS = require('yowjs'),
+    TYPES = require('yowjs/src/message/types');
 
+console.log(TYPES);
 
 class Roomba {
     constructor() {
@@ -22,6 +24,8 @@ class Roomba {
             config.yowsup.password
         )
         .on('ON_MESSAGE', (message) => {
+            if (message.getType() !== TYPES.MESSAGE_PRIVATE && message.getType() !== TYPES.MESSAGE_GROUP) return;
+
             route.dispatch(message);
         }).on('LINK_DEAD', () => {
             console.log('LINK_DEAD');
