@@ -33,16 +33,15 @@ class URLtoImage {
         console.log('Downloading url... ' + url);
 
         let pageres = new Pageres({delay: 2})
-        	.src(url, ['750x1334'])
+            .src(url, ['750x1334'])
+            .dest(tmp)
+            .run()
+            .then((stream) => {
+                let fileName = stream[0].filename;
+                console.log('Downloading complete... ' + url + ' Sending back '+ fileName);
 
-        	.dest(tmp)
-        	.run()
-        	.then((stream) => {
-        	    let fileName = stream[0].filename;
-        	    console.log('Downloading complete... ' + url + ' Sending back '+ fileName);
-
-        	    callback(tmp +'/'+ fileName);
-        	});
+                callback(tmp +'/'+ fileName);
+            });
     }
 }
 

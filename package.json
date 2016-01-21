@@ -1,10 +1,11 @@
 {
   "name": "roomba-bot",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Roomba - The bot",
   "main": "index.js",
   "dependencies": {
-    "yowjs": "^0.0.10",
+    "yowjs": "^0.1.2",
+    "winston": "^2.1.1",
     "dotenv": "^1.2.0",
     "wget-improved": "^1.2.1",
     "pageres": "^3.0.2",
@@ -12,9 +13,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "karma",
-    "install_yowsup": "sudo easy_install yowsup2",
-    "page_res_utf8_fix": "LC_ALL=C"
+    "test": "mocha test/*",
+    "postinstall": "LC_ALL=C"
   },
   "keywords": [
     "bot",

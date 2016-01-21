@@ -28,6 +28,8 @@ class Router {
     dispatch(message) {
         let matchText;
 
+        console.log(['MSG IN ', message]);
+
         this.triggers.forEach(trigger => {
             matchText = trigger.match(message);
 
