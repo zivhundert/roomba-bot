@@ -1,6 +1,6 @@
 'use strict';
 
-class RepeatText {
+class Help {
     constructor() {
         this.action = 'SAY';
         this.type = 'all';
@@ -28,4 +28,4 @@ class RepeatText {
     }
 }
 
-module.exports = RepeatText;
+module.exports = Help;
