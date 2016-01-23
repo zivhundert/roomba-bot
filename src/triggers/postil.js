@@ -1,6 +1,7 @@
 'use strict';
 
-const PostILStatus = require('postil-status');
+const PostILStatus = require('postil-status'),
+      Logger = require('./../utils/logger');
 
 class PostIL {
     constructor(trackingID) {
@@ -14,7 +15,7 @@ class PostIL {
         console.log(this.trackingID);
 
 
-        let postil = new PostILStatus({language: 'HE'});
+        let postil = new PostILStatus({language: 'HE'}, Logger);
         postil.getStatus(this.trackingID).then(packageModel => {
             callback(packageModel.getDescription());
         });
