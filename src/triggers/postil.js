@@ -6,7 +6,11 @@ class PostIL {
     constructor(trackingID) {
         this.action = 'SAY';
         this.type = 'all';
-        this.trackingID = trackingID[0];
+        this.trackingID = [
+                trackingID[1], // XX
+                trackingID[2], // 123456789
+                trackingID[3]  // XX
+            ].join('');
     }
 
 
