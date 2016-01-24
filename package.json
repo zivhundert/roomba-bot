@@ -6,7 +6,7 @@
   "dependencies": {
     "MD5": "^1.3.0",
     "yowjs": "^0.1.8",
-    "postil-status": "^0.0.2",
+    "postil-status": "^0.1.0",
     "winston": "^2.1.1",
     "node-cache": "^3.0.1",
     "dotenv": "^1.2.0",
