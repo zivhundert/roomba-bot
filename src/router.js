@@ -22,7 +22,7 @@ class Router {
             new Trigger(/@ping/i, PingPong), // ping pong, check bot up.
             new Trigger(/@i (.*)/i, GoogleImages), // search images.
             new Trigger(/.*([A-Za-z]{2})([0-9]{9})([A-Za-z]{2}).*/i, PostIL), // PostIL checker
-            new Trigger(/https?:\/\/(.*)/i, URLtoImage) // image downloader
+            new Trigger(/(http|https):\/\/(.*)/i, URLtoImage) // image downloader
         );
 
         return this;
