@@ -17,6 +17,7 @@ class URLtoImage {
         ].join('');
     }
 
+
     execute(callback) {
         let tmp = config.tmp.dir,
             url = this.url,
