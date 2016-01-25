@@ -12,7 +12,7 @@ class URLtoImage {
         this.action = 'IMAGE';
         this.type = 'all';
         this.url = [
-            message[1], // protocol: http or https
+            message[1] + '://', // protocol: http or https ://
             message[2]  // url: c9.io/example.html
         ].join('');
     }
