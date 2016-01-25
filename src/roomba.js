@@ -4,7 +4,7 @@ let config = require('./config'),
     Logger = require('./utils/logger'),
     Router = require('./router'),
     YowJS = require('yowjs'),
-    TYPES = require('yowjs/src/message/types');
+    TYPES = require('yowjs/src/consts/types');
 
 class Roomba {
     constructor() {
