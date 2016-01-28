@@ -25,7 +25,7 @@ class Router {
             new Trigger(/@i (.*)/i, GoogleImages), // search images.
             new Trigger(/.*([A-Za-z]{2})([0-9]{9})([A-Za-z]{2}).*/i, PostIL), // PostIL checker
             new Trigger(/(https?:\/\/[^\s]+)/gi, URLtoImage), // image downloader
-            new Trigger(/@e (.*)/i, Ebay) //search product on ebay
+            new Trigger(/@w (.*)/i, Weather) //show current weather
         );
 
         return this;
