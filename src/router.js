@@ -6,7 +6,7 @@ let Trigger = require('./trigger'),
     URLtoImage = require('./triggers/url_to_image'),
     GoogleImages = require('./triggers/google_images'),
     PingPong = require('./triggers/ping_pong'),
-    Ebay = require('./triggers/ebay');
+    Weather = require('./triggers/weather');
     
 
 class Router {
